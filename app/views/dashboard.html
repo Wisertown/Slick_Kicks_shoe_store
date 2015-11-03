@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h3 {
+            margin-left: 450px;
+        }
+    </style>
+	<meta charset="UTF-8">
+	<title>User Sale Dashboard</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="col-md-6 col-md-offset-1">
+		<h2>Hi! {{session['first_name']}}</h2>&nbsp&nbsp&nbsp<h3><a href="/all_products">See all the Shoes!</a></h3>
+		<a class="logout" href="/logout">Log Out</a>
+		<br>
+		<h4 class="col-md-6 col-md-offset-1">Sell Your Shoes</h4>
+		<form action="/create" method="post" class="col-md-8 col-md-offset-1" role="form">
+			
+			<input type="text"  name="name" class="form-control input-lg">
+			<br>
+            <label for="price">Sale amount</label>
+			$<input type="text" name="price" pattern="^\d*(\.\d{2}$)?" size="4"
+    title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional" />
+			<input type="submit" name="sell" class="btn btn-primary">
+		</form>
+		<br>
+	</div>
+	<br>
+    <br>
+	<div class="col-md-8 col-md-offset-2">
+		<p>Your Shoes for Sale:</p>
+        <table border="1" class="table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Date Posted</th>
+                <th>Amount</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+                {%for classes in shoe_data_query %}
+                <tr><td>{{classes['name']}}</a></td><td>{{classes['created_at']}}</td><td>{{classes['price']}}</td><td><a href="/delete/{{classes['id']}}">Remove</a></td></tr> 
+                {%endfor%}
+            </tbody>
+       </table>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+		<p>Shoes Sold:</p>
+        <table border="1" class="table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Date bought</th>
+                <th>Buyer</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+             <tbody>
+                {%for classes in sales %}
+                <tr><td>{{classes['name']}}</a></td><td>{{classes['created_at']}}</td><td>{{classes['buyer']}}</td><td>{{classes['price']}}</a></td></tr> 
+                {%endfor%}
+            </tbody>
+               
+       </table>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+		<p>Purchases:</p>
+        <table border="1" class="table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Date bought</th>
+                <th>Seller</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+       </table>
+    </div>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

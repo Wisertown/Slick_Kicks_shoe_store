@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<style>
+		p {color: red;}
+  	</style>
+  	<title>Sick Kicks Shoe Sale</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </head>
+	<h1 class="col-md-6 col-md-offset-1">Please enter your information</h1>
+	
+	<div class="col-md-6 col-md-offset-2">	
+	<form action='/users' method='post' role="form">
+		<div class="form-group">
+		 <h3>Register a new account</h3>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p>{{ msg }}</p>
+			{% endfor %}	
+		{% endif %}
+	{% endwith %}
+		<label for="first_name">first name:</label>		
+		<input type="text" name="first_name" class="form-control">
+		<label for="last_name">last name:</label>		
+		<input type="text" name="last_name" class="form-control">
+		<label for="email">Email:</label>		
+		<input type="email" name="email" class="form-control">
+		<label for="pwd">Password:</label>		
+		<input type="password" name="password" class="form-control">
+		<label for="pwd">Password Confirm:</label>		
+		<input type="password" name="pw_confirm" class="form-control">
+		</div>
+		<input type="submit" placeholder="Signup!" class="btn btn-primary">							
+	</form>
+	<br>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+	<form action="/users/login" role="form" method="POST">
+		<div class="form-group">
+		<h3>Login an existing account</h3>
+		<label for="email">Email:</label>	
+		<input type="email" name="email" class="form-control">
+		<label for="pwd">Password:</label>		
+		<input type="password" name="password" class="form-control">
+		<br>		
+		<input type="submit" placeholder="Signup!" class="btn btn-primary">	
+		</div>				
+	</form>
+	</div>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

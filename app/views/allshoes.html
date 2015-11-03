@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>All Shoes</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="col-md-6 col-md-offset-1">
+		<h4>Hi! {{session['first_name']}}</h4><h4><a href="/show">Return to your dashboard</h4></a>&nbsp&nbsp&nbsp&nbsp<h3><a href="/all_products"></a></h3>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}    
+        {% endif %}
+    {% endwith %}
+        <a class="logout" href="/logout">Log Out</a>
+		<br>
+	</div>
+	<h2>All Products</h2>
+	<div class="col-md-8 col-md-offset-1">
+		<table border="1" class="table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Seller</th>
+                <th>Date Posted</th>
+                <th>Amount</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {%for classes in show_shoes %}
+                <tr><td>{{classes['shoe_name']}}</a></td><td>{{classes['full_name']}}</td><td>{{classes['created_at']}}</td><td>{{classes['price']}}</td><td><a href="/buy/{{classes['id_shoe']}}">Buy</a></td></tr> 
+                {%endfor%}
+            </tbody>
+	    </table>
+	</div>
