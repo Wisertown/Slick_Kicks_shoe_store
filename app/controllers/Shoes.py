@@ -29,32 +29,34 @@ class Shoes(Controller):
     def show(self):
     	shoe_data_query = self.models['Shoe'].not_sold()
         sales = self.models['Shoe'].shoe_sales()
-        return self.load_view('dashboard.html', shoe_data_query=shoe_data_query, sales=sales)
+        get_purchases = self.models['Shoe'].get_purchases()
+        return self.load_view('dashboard.html', shoe_data_query=shoe_data_query, sales=sales, get_purchases=get_purchases)
 
     def logout(self):
-    	session.clear()
-    	return redirect('/')
+        session.clear()
+        return redirect('/')
 
     def all_products(self):
         get_all_products = self.models['Shoe'].get_all_products()
+        print session['id']
+        print get_all_products
         return self.load_view('allshoes.html', show_shoes=get_all_products)
     
     def buy(self, id):
         result = self.models['Shoe'].buy(id)
-        print id
-        print "got here"
         flash('Congrats you bought this item!')
         return redirect('/all_products')
 
-
-    # # def delete(self, id):
-    #   shoe_delete_query = self.models['Shoe'].delete(id)
-    #   return redirect('/show')
+    def purchases(self):
+        return redirect('/show')
 
 
-    # def show2(self):
-    #   shoe_data_query = self.models['Shoe'].not_sold()
-    #   return self.load_view('dashboard.html', shoe_data_query=shoe_data_query)
+    def delete(self, id):
+        shoe_delete_query = self.models['Shoe'].delete(id)
+        return redirect('/show')
+
+
+
 
 
 

@@ -11,6 +11,7 @@
 </head>
 <body>
 	<div class="col-md-6 col-md-offset-1">
+
 		<h4>Hi! {{session['first_name']}}</h4><h4><a href="/show">Return to your dashboard</h4></a>&nbsp&nbsp&nbsp&nbsp<h3><a href="/all_products"></a></h3>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -35,8 +36,13 @@
               </tr>
             </thead>
             <tbody>
+               
                 {%for classes in show_shoes %}
-                <tr><td>{{classes['shoe_name']}}</a></td><td>{{classes['full_name']}}</td><td>{{classes['created_at']}}</td><td>{{classes['price']}}</td><td><a href="/buy/{{classes['id_shoe']}}">Buy</a></td></tr> 
+                <tr>
+                    <td>{{classes['shoe_name']}}</a></td><td>{{classes['full_name']}}</td><td>{{classes['created_at']}}</td><td>{{classes['price']}}</td><td>{% if classes['id_user']  != session['id']|string %}
+                    <a href="/buy/{{classes['id_shoe']}}"
+                    >Buy</a>{% endif %}</td>
+                </tr>
                 {%endfor%}
             </tbody>
 	    </table>

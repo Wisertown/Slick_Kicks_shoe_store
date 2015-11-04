@@ -63,8 +63,13 @@
               </tr>
             </thead>
              <tbody>
-                {%for classes in sales %}
-                <tr><td>{{classes['name']}}</a></td><td>{{classes['created_at']}}</td><td>{{classes['buyer']}}</td><td>{{classes['price']}}</a></td></tr> 
+                {%for index in sales %}
+                <tr>
+                    <td>{{index['name']}}</td>
+                    <td>{{index['updated_at']}}</td>
+                    <td>{{index['first_name']}} {{ index['last_name']}}</td>
+                    <td>{{index['price']}}</td>
+                </tr> 
                 {%endfor%}
             </tbody>
                
@@ -82,7 +87,16 @@
               </tr>
             </thead>
             <tbody>
-               
+                {%for item in get_purchases%}
+                <tr>
+                    
+                    <td>{{item['name']}}</td>
+                    <td>{{item['updated_at']}}</td>
+                    <td>{{item['first_name']}} {{item['last_name']}}</td>
+                    <td>{{item['price']}}</td>
+                   
+                </tr> 
+                {%endfor%}
             </tbody>
        </table>
     </div>

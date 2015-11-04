@@ -16,7 +16,8 @@ class Shoe(Model):
         return self.db.query_db(insert_shoe_query)
 
     def not_sold(self):
-        not_sold_query = "SELECT id, name, price, created_at from shoes where seller_id = '{}' and buyer <> 0".format(session['id'])
+        not_sold_query = "SELECT id, name, price, created_at from shoes where seller_id = '{}' and buyer = 0".format(session['id'])
+        print "Model not_sold"
         return self.db.query_db(not_sold_query)
 
     def shoe_sales(self):
@@ -33,6 +34,10 @@ class Shoe(Model):
         buy_shoe_query = "UPDATE shoes set buyer = '{}' where shoes.id = '{}'".format(session['id'], id)
         return self.db.query_db(buy_shoe_query)
         print "made it here after the query"
-        success.append("Congratulations! You just bought some SICK KICKS!") 
+        success.append("Congratulations! You just bought some SICK KICKS!")
+
+    def get_purchases(self):
+        purchase_query = "SELECT users.first_name, users.last_name, shoes.name, shoes.price, shoes.buyer, shoes.updated_at, shoes.seller_id from shoes join users on shoes.seller_id = users.id where buyer ='{}'".format(session['id'])
+        return self.db.query_db(purchase_query) 
 
         
