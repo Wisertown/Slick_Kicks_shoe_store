@@ -19,6 +19,13 @@
 		<h2>Hi! {{session['first_name']}}</h2>&nbsp&nbsp&nbsp<h3><a href="/all_products">See all the Shoes!</a></h3>
 		<a class="logout" href="/logout">Log Out</a>
 		<br>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}    
+        {% endif %}
+    {% endwith %}
 		<h4 class="col-md-6 col-md-offset-1">Sell Your Shoes</h4>
 		<form action="/create" method="post" class="col-md-8 col-md-offset-1" role="form">
 			

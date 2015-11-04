@@ -25,6 +25,7 @@ routes['POST']['/create'] = 'Shoes#create'
 routes['GET']['/delete/<int:id>'] = 'Shoes#delete'
 routes['GET']['/all_products'] = 'Shoes#all_products'
 routes['GET']['/buy/<int:id>'] = 'Shoes#buy'
+routes['GET']['/delete/<int:id>'] = 'Shoes#delete'
 """
     You can add routes and specify their handlers as follows:
 

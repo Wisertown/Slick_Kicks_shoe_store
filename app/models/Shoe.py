@@ -38,6 +38,10 @@ class Shoe(Model):
 
     def get_purchases(self):
         purchase_query = "SELECT users.first_name, users.last_name, shoes.name, shoes.price, shoes.buyer, shoes.updated_at, shoes.seller_id from shoes join users on shoes.seller_id = users.id where buyer ='{}'".format(session['id'])
-        return self.db.query_db(purchase_query) 
+        return self.db.query_db(purchase_query)
+
+    def delete(self, id):
+        delete_query ="DELETE from shoes WHERE shoes.id = '{}'".format(id)
+        return self.db.query_db(delete_query) 
 
         

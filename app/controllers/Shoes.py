@@ -38,8 +38,6 @@ class Shoes(Controller):
 
     def all_products(self):
         get_all_products = self.models['Shoe'].get_all_products()
-        print session['id']
-        print get_all_products
         return self.load_view('allshoes.html', show_shoes=get_all_products)
     
     def buy(self, id):
@@ -53,6 +51,7 @@ class Shoes(Controller):
 
     def delete(self, id):
         shoe_delete_query = self.models['Shoe'].delete(id)
+        flash('Item has been deleted')
         return redirect('/show')
 
 
