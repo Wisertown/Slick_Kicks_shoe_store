@@ -4,9 +4,13 @@
     <style>
         h3 {
             margin-left: 450px;
+            
         }
         p {
             
+        }
+        #message {
+            color: green;
         }
     </style>
 	<meta charset="UTF-8">
@@ -25,7 +29,7 @@
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for msg in messages %}
-                <p>{{ msg }}</p>
+                {{ <h3 id="message">msg</h3> }}
             {% endfor %}    
         {% endif %}
     {% endwith %}
